@@ -1,0 +1,47 @@
+A B C D shifts. These are consecutive, A is applied every 1, 5, 9th, ect.
+27 total chars, a-z and " ".
+key is random 5 digit code. - uses each_cons 2 for key. key 1 is [0,1], key 2 is [1,2], ect.
+this key is further offset by an offset value. This is found by taking the date in DDMMYY format, 080193,
+squaring it (6430917249), and taking the last 4 digits. - 7249. This is applied to the keys.
+
+full example - 80301:
+key 1: 80 + 7 = 87
+key 2: 03 + 2 = 5
+key 3: 30 + 4 = 34
+key 4: 01 + 9 = 10
+
+lowercase only - .downcase input
+
+Enigma#encrypt(message - string, key = rand(99999).to_s , date = datecreator)
+datecreator = Date#strftime
+
+returns Hash{
+  :encryption => the encrypted String
+  :key => the key used for encryption as a String
+  :date => the date used for encryption as a String in the form DDMMYY
+}
+
+Enigma#decrypt(ciphertext, key = rand(99999), date = datecreator)
+
+return Hash{
+  decryption: "hello world",
+  key: "02715",
+  date: "040895"
+}
+
+Enigma#crack(ciphertext, date = datecreator)
+
+## message[-3..-1] == "end"
+
+return Hash{
+  decryption: "hello world end",
+  key: "08304",
+  date: "291018"
+}
+
+CLI -
+encrypt takes 2 arguments when ran. Message as input and target path for output.
+decrypt takes 4 arguments when ran. encrypted as input and target path for output, key and date used.
+crack - takes 3 arguments when ran. encrypted as input and target path for output, date of transmission.
+
+stretch - No arguments at all. Find all permutations? (o)n^2
