@@ -12,7 +12,7 @@ key 4: 01 + 9 = 10
 
 lowercase only - .downcase input
 
-Enigma#encrypt(message - string, key = rand(99999).to_s , date = datecreator)
+Enigma#encrypt(message - string, key = rand(2..6).to_s , date = datecreator)
 datecreator = Date#strftime
 
 returns Hash{
@@ -41,7 +41,9 @@ return Hash{
 
 CLI -
 encrypt takes 2 arguments when ran. Message as input and target path for output.
+output is: created <filename> with the key 82648 and date 240818
 decrypt takes 4 arguments when ran. encrypted as input and target path for output, key and date used.
 crack - takes 3 arguments when ran. encrypted as input and target path for output, date of transmission.
+output is: created <filename> with the cracked key 82648 and date 240818
 
 stretch - No arguments at all. Find all permutations? (o)n^2
