@@ -1,7 +1,8 @@
 class Enigma
 
   def self.generate_characters
-    charactors = ("a".."z").to_a << " "
+    characters = ("a".."z").to_a << " "
+    characters.each_with_index.map{|char, index| [char, index]}.to_h
   end
 
   def self.create_keys(key)
@@ -24,9 +25,11 @@ class Enigma
   end
 
   def self.add_offsets(keys, date_key)
-    new_keys = []
-    keys.each_with_index{|x, i| new_keys << x.to_i + date_key[i].to_i}
-    new_keys
+    keys.each_with_index.map{|key, index| key.to_i + date_key[index].to_i}
+  end
+
+  def self.get_message_array(message)
+    message.downcase.split ""
   end
 
 end
