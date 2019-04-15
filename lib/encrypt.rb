@@ -8,12 +8,15 @@ class Encrypt
     encode = ""
 
     message_array.each_with_index do |char, index|
-      temp = setup[:base][char] + setup[:keys][index % 4]
-      encode += setup[:base].key \
-      (temp - (setup[:base].count * (temp / setup[:base].count)))
+      if setup[:base].key?(char)
+        temp = (setup[:base][char] + setup[:keys][index % 4])
+        encode += setup[:base].key(temp % setup[:base].count)
+      else
+        encode += char
+      end
     end
 
-    return Enigma.create_hash(encode, key, date, :encryption)
+    Enigma.create_hash(encode, key, date, :encryption)
   end
 
   def self.fetch_key

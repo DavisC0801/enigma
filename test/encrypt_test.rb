@@ -18,14 +18,19 @@ class EncryptTest < Minitest::Test
   end
 
   def test_it_has_default_values
-    d = Date.today
-    assert_equal @encrypt[:date], d.strftime('%d%m%y')
+    assert_equal @encrypt[:date], Date.today.strftime('%d%m%y')
     assert (1..99999).to_a.include?(@encrypt[:key].to_i)
   end
 
+  def test_setup_values
+    encrypt_setup = Encrypt.setup("12345", "080196")
+    assert_equal encrypt_setup[:base], Enigma.generate_characters()
+    assert_equal encrypt_setup[:keys], [20, 27, 35, 51]
+  end
+
   def test_it_encrypts_message
-    encrypt_message = Encrypt.encode("hello world", "02715", "040895")
-    assert_equal encrypt_message[:encryption], "keder ohulw"
+    encrypt_message = Encrypt.encode("hello world!", "02715", "040895")
+    assert_equal encrypt_message[:encryption], "keder ohulw!"
   end
 
 end
