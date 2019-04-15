@@ -2,7 +2,7 @@ require "./test/test_helper"
 require "./lib/decrypt"
 
 class DecryptTest < Minitest::Test
-  
+
     def setup
       @encrypt = Decrypt.decode("keder ohulw!", "02715", "040895")
     end
