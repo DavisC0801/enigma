@@ -1,14 +1,10 @@
-require "./test_helper"
+require "./test/test_helper"
 require "./lib/encrypt"
 
 class EncryptTest < Minitest::Test
 
   def setup
     @encrypt = Encrypt.encode("hello world")
-  end
-
-  def test_it_exists
-    assert_instance_of Encrypt, @encrypt
   end
 
   def test_it_accepts_a_date
@@ -24,7 +20,7 @@ class EncryptTest < Minitest::Test
   def test_it_has_default_values
     d = Date.today
     assert_equal @encrypt[:date], d.strftime('%d%m%y')
-    assert (1..99999).to_a.include?(@encrypt[:key])
+    assert (1..99999).to_a.include?(@encrypt[:key].to_i)
   end
 
   def test_it_encrypts_message
