@@ -1,7 +1,7 @@
 require "./test/test_helper"
 require "./lib/encryption"
 
-class EncryptTest < Minitest::Test
+class EncryptionTest < Minitest::Test
 
   def setup
     @encrypt = Encryption.encode("hello world")
