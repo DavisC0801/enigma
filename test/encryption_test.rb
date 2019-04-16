@@ -23,12 +23,6 @@ class EncryptionTest < Minitest::Test
     assert (1..99999).to_a.include?(@encrypt[:key].to_i)
   end
 
-  def test_setup_values
-    encrypt_setup = @enigma.setup("12345", "080196")
-    assert_equal encrypt_setup[:base], Enigma.generate_characters
-    assert_equal encrypt_setup[:keys], [20, 27, 35, 51]
-  end
-
   def test_it_encrypts_message
     encrypt_message = @enigma.encrypt("hello world!", "02715", "040895")
     assert_equal encrypt_message[:encryption], "keder ohulw!"

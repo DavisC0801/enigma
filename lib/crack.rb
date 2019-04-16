@@ -12,9 +12,10 @@ class Crack
   }
   output[:date] = inputs[2] if inputs.length == 3
 
+  enigma = Enigma.new
   File.open(inputs[1], "w+") do |file|
     File.readlines(inputs.first).each do |line|
-      output = Cracker.crack(line.chomp, output[:date])
+      output = enigma.crack(line.chomp, output[:date])
       file.puts(output[:decryption])
     end
   end

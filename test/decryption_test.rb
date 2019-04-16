@@ -20,10 +20,4 @@ class DecryptionTest < Minitest::Test
     assert_equal @decrypt[:decryption], "hello world!"
   end
 
-  def test_setup_values
-    decrypt_setup = @enigma.setup("12345", "080196")
-    assert_equal decrypt_setup[:base], Enigma.generate_characters()
-    assert_equal decrypt_setup[:keys], [20, 27, 35, 51]
-  end
-
 end

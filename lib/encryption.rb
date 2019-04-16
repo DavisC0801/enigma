@@ -4,8 +4,8 @@ class Encryption
   include EnigmaSetup
 
   def self.encode(message, key, date)
-    encode(message, key, date, "en")
-    create_hash(encode, key, date, :encryption)
+    encode = EnigmaSetup.shift(message, key, date, "en")
+    EnigmaSetup.create_hash(encode, key, date, :encryption)
   end
 
 end

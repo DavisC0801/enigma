@@ -6,15 +6,15 @@ require "./lib/cracker"
 class Enigma
   include EnigmaSetup
 
-  def encrypt(message, key = fetch_key, date = fetch_date)
+  def encrypt(message, key = EnigmaSetup.fetch_key, date = EnigmaSetup.fetch_date)
     Encryption.encode(message, key, date)
   end
 
-  def decrypt(message, key, date = fetch_date)
+  def decrypt(message, key, date = EnigmaSetup.fetch_date)
     Decryption.decode(message, key, date)
   end
 
-  def crack(message, date = fetch_date)
+  def crack(message, date = EnigmaSetup.fetch_date)
     Cracker.crack(message, date)
   end
 

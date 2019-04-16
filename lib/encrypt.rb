@@ -16,9 +16,10 @@ class Encrypt
   output[:key] = inputs[2] if inputs.length == 3 || inputs.length == 4
   output[:date] = inputs[3] if inputs.length == 4
 
+  enigma = Enigma.new
   File.open(inputs[1], "w+") do |file|
     File.readlines(inputs[0]).each do |line|
-      output = Encryption.encode(line.chomp, output[:key], output[:date])
+      output = enigma.encode(line.chomp, output[:key], output[:date])
       file.puts(output[:encryption])
     end
   end
