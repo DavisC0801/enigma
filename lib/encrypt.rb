@@ -1,10 +1,21 @@
+require "./lib/encryption"
+
 class Encrypt
 
   inputs = ARGV
 
-  abort("Error - input file not found") if !File.readable?(inputs.first)
   abort("Error - wrong number of inputs") if inputs.length != 2
+  abort("Error - input file not found") if !File.readable?(inputs.first)
 
-  puts "Created #{inputs.last} with the key #{[:key]} and date #{[:date]}"
+  output = {}
+  
+  File.open(inputs.last, "w+") do |file|
+    File.readlines(inputs.first).each do |line|
+      output = Encryption.encode(line.chomp)
+      file.puts(output[:encryption])
+    end
+  end
+
+  puts "Created #{inputs.last} with the key #{output[:key]} and date #{output[:date]}"
 
 end
