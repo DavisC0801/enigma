@@ -4,7 +4,6 @@ require "./lib/enigma_setup"
 class Encrypt
 
   inputs = ARGV
-
   abort("Error - wrong number of inputs") if inputs.length < 2 || inputs.length > 4
   abort("Error - input file not found") if !File.readable?(inputs.first)
   if (inputs.length == 3 && !(1..99999).to_a.include?(inputs[2].to_i)) \
