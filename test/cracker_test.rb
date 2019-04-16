@@ -18,13 +18,14 @@ class CrackerTest < Minitest::Test
   end
 
   def test_it_cracks_without_a_date
+    encrypted = Encryption.encode("hello world end")[:encryption]
     expected = {
       decryption: "hello world end",
       date: Date.today.strftime('%d%m%y')
     }
-    assert_equal Cracker.crack("vjqtbeaweqihssi")[:decryption],
+    assert_equal Cracker.crack(encrypted)[:decryption],
     expected[:decryption]
-    assert_equal Cracker.crack("vjqtbeaweqihssi")[:date],
+    assert_equal Cracker.crack(encrypted)[:date],
     expected[:date]
   end
 
