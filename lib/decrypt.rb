@@ -1,30 +1,21 @@
+require "./lib/decryption"
+
 class Decrypt
 
-  def self.decode(message, key, date)
-    setup = setup(key, date)
-    message_array = Enigma.get_message_array(message)
-    encode = ""
-    message_array.each_with_index do |char, index|
-      if setup[:base].key?(char)
-        temp = (setup[:base][char] - setup[:keys][index % 4])
-        encode += setup[:base].key(temp % setup[:base].count)
-      else
-        encode += char
-      end
+  inputs = ARGV
+
+  abort("Error - wrong number of inputs") if inputs.length != 4
+  abort("Error - input file not found") if !File.readable?(inputs.first)
+
+  output = {}
+
+  File.open(inputs[1], "w+") do |file|
+    File.readlines(inputs.first).each do |line|
+      output = Decryption.decode(line.chomp, inputs[2], inputs[3])
+      file.puts(output[:decryption])
     end
-
-    Enigma.create_hash(encode, key, date, :decryption)
   end
 
-  def self.setup(key, date)
-    keys = Enigma.create_keys(key)
-    base = Enigma.generate_characters()
-    date_key = Enigma.generate_date_key(date)
-    keys = Enigma.add_offsets(keys, date_key)
-    return {
-      :base => base,
-      :keys => keys
-    }
-  end
+  puts "Created #{inputs[1]} with the key #{output[:key]} and date #{output[:date]}"
 
 end

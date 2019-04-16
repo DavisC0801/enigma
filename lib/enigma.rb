@@ -29,7 +29,7 @@ class Enigma
   end
 
   def self.get_message_array(message)
-    message.downcase.split ""
+    message.downcase.chars
   end
 
 end
