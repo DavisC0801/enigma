@@ -1,6 +1,5 @@
-require "./lib/decryption"
-require "./lib/encryption"
-require "./lib/cracker"
+require "./lib/enigma"
+require "./lib/enigma_setup"
 
 class Crack
 
@@ -10,13 +9,14 @@ class Crack
   abort("Error - input file not found") if !File.readable?(inputs.first)
 
   output = {
-    :date => Encryption.fetch_date
+    :date => EnigmaSetup.fetch_date
   }
   output[:date] = inputs[2] if inputs.length == 3
 
+  enigma = Enigma.new
   File.open(inputs[1], "w+") do |file|
     File.readlines(inputs.first).each do |line|
-      output = Cracker.crack(line.chomp, output[:date])
+      output = enigma.crack(line.chomp, output[:date])
       file.puts(output[:decryption])
     end
   end
