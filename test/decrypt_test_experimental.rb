@@ -1,26 +1,26 @@
 require "./test/test_helper"
-require "./lib/encrypt"
+require "./lib/decrypt"
 
-class EncryptTest < Minitest::Test
+class DecryptTest < Minitest::Test
 
   def test_it_aborts_if_file_not_found
     assert_output('', "Error - input file not found") do
-      Encrypt "tests" "tests"
+      decrypt "tests" "tests" "tests" "tests"
     end
   end
 
   def test_it_aborts_if_incorrect_number_of_inputs
     assert_output('', "Error - wrong number of inputs") do
-      Encrypt "tests" "tests" "tests"
+      decrypt "tests" "tests" "tests" "tests" "tests"
     end
     assert_output('', "Error - wrong number of inputs") do
-      Encrypt "tests"
+      decrypt "tests" "tests"
     end
   end
 
   def test_it_outputs_a_file
-    assert_output("Created \"encrypted.txt\" with the key #{/*/} and date #{/*/}", '') do
-      Encrypt "message.txt" "encrypted.txt"
+    assert_output("Created \"decrypted.txt\" with the key #{/*/} and date #{/*/}", '') do
+      decrypt "encrypted.txt" "decrypted.txt" 83132 160419
     end
   end
 end
