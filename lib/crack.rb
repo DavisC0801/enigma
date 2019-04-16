@@ -1,6 +1,4 @@
-require "./lib/decryption"
-require "./lib/encryption"
-require "./lib/cracker"
+require "./lib/enigma"
 
 class Crack
 

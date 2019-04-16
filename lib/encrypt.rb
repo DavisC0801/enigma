@@ -1,4 +1,4 @@
-require "./lib/encryption"
+require "./lib/enigma"
 
 class Encrypt
 

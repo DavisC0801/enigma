@@ -22,6 +22,14 @@ module EnigmaSetup
     }
   end
 
+  def fetch_key
+    rand.to_s[2..6]
+  end
+
+  def fetch_date
+    Date.today.strftime('%d%m%y')
+  end
+
   def generate_date_key(date)
     (date.to_i ** 2).to_s[-4..-1]
   end
@@ -45,7 +53,7 @@ module EnigmaSetup
     }
   end
 
-  def encode(message, key, date, en_or_de)
+  def self.encode(message, key, date, en_or_de)
     setup = setup(key, date)
     message_array = Enigma.get_message_array(message)
     encode = ""

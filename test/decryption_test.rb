@@ -1,10 +1,11 @@
 require "./test/test_helper"
-require "./lib/decryption"
+require "./lib/enigma"
 
 class DecryptionTest < Minitest::Test
 
   def setup
-    @decrypt = Decryption.decode("keder ohulw!", "02715", "040895")
+    @enigma = Enigma.new
+    @decrypt = @enigma.decrypt("keder ohulw!", "02715", "040895")
   end
 
   def test_it_accepts_a_date
@@ -20,7 +21,7 @@ class DecryptionTest < Minitest::Test
   end
 
   def test_setup_values
-    decrypt_setup = Decryption.setup("12345", "080196")
+    decrypt_setup = @enigma.setup("12345", "080196")
     assert_equal decrypt_setup[:base], Enigma.generate_characters()
     assert_equal decrypt_setup[:keys], [20, 27, 35, 51]
   end
