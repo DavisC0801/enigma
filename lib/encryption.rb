@@ -10,7 +10,7 @@ class Encryption
 
     message_array.each_with_index do |char, index|
       if setup[:base].key?(char)
-        temp = (setup[:base][char] + setup[:keys][index % 4])
+        temp = (setup[:base][char] + setup[:keys][index % setup[:keys].length])
         encode += setup[:base].key(temp % setup[:base].count)
       else
         encode += char
