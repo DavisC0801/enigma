@@ -1,4 +1,5 @@
 require "./lib/enigma"
+require "./lib/enigma_setup"
 
 class Crack
 
@@ -8,7 +9,7 @@ class Crack
   abort("Error - input file not found") if !File.readable?(inputs.first)
 
   output = {
-    :date => Encryption.fetch_date
+    :date => EnigmaSetup.fetch_date
   }
   output[:date] = inputs[2] if inputs.length == 3
 

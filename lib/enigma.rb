@@ -4,7 +4,6 @@ require "./lib/decryption"
 require "./lib/cracker"
 
 class Enigma
-  include EnigmaSetup
 
   def encrypt(message, key = EnigmaSetup.fetch_key, date = EnigmaSetup.fetch_date)
     Encryption.encode(message, key, date)

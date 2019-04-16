@@ -1,7 +1,6 @@
 require "./lib/enigma_setup"
 
 class Decryption
-  include EnigmaSetup
 
   def self.decode(message, key, date)
     encode = EnigmaSetup.shift(message, key, date, "de")
