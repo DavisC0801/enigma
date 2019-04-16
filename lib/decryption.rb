@@ -1,4 +1,6 @@
-class Decrypt
+require "./lib/enigma"
+
+class Decryption
 
   def self.decode(message, key, date)
     setup = setup(key, date)
