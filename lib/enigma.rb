@@ -4,6 +4,10 @@ class Enigma
     Encryption.encode(message, key, date)
   end
 
+  def decrypt(message, key, date = fetch_date)
+    Decryption.decode(message, key, date)
+  end
+
   def self.generate_characters
     characters = ("a".."z").to_a << " "
     characters.each_with_index.map{|char, index| [char, index]}.to_h
