@@ -8,6 +8,10 @@ class Enigma
     Decryption.decode(message, key, date)
   end
 
+  def crack(message, date = fetch_date)
+    Cracker.crack(message, date)
+  end
+
   def self.generate_characters
     characters = ("a".."z").to_a << " "
     characters.each_with_index.map{|char, index| [char, index]}.to_h
