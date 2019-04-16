@@ -1,31 +1,21 @@
 require "./lib/enigma"
-require "date"
 
-class Encryption
+class Decryption
 
-  def self.encode(message, key = fetch_key, date = fetch_date)
+  def self.decode(message, key, date)
     setup = setup(key, date)
     message_array = Enigma.get_message_array(message)
     encode = ""
-
     message_array.each_with_index do |char, index|
       if setup[:base].key?(char)
-        temp = (setup[:base][char] + setup[:keys][index % setup[:keys].length])
+        temp = (setup[:base][char] - setup[:keys][index % 4])
         encode += setup[:base].key(temp % setup[:base].count)
       else
         encode += char
       end
     end
 
-    Enigma.create_hash(encode, key, date, :encryption)
-  end
-
-  def self.fetch_key
-    rand.to_s[2..6]
-  end
-
-  def self.fetch_date
-    Date.today.strftime('%d%m%y')
+    Enigma.create_hash(encode, key, date, :decryption)
   end
 
   def self.setup(key, date)
