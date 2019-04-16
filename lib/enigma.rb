@@ -1,5 +1,9 @@
 class Enigma
 
+  def encrypt(message, key = fetch_key, date = fetch_date)
+    Encryption.encode(message, key, date)
+  end
+
   def self.generate_characters
     characters = ("a".."z").to_a << " "
     characters.each_with_index.map{|char, index| [char, index]}.to_h

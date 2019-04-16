@@ -3,7 +3,7 @@ require "date"
 
 class Encryption
 
-  def self.encode(message, key = fetch_key, date = fetch_date)
+  def self.encode(message, key, date)
     setup = setup(key, date)
     message_array = Enigma.get_message_array(message)
     encode = ""
