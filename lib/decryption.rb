@@ -1,6 +1,7 @@
-require "./lib/enigma"
+require "./lib/enigma_setup"
 
 class Decryption
+  include EnigmaSetup
 
   def self.decode(message, key, date)
     setup = setup(key, date)
@@ -16,17 +17,6 @@ class Decryption
     end
 
     Enigma.create_hash(encode, key, date, :decryption)
-  end
-
-  def self.setup(key, date)
-    keys = Enigma.create_keys(key)
-    base = Enigma.generate_characters()
-    date_key = Enigma.generate_date_key(date)
-    keys = Enigma.add_offsets(keys, date_key)
-    return {
-      :base => base,
-      :keys => keys
-    }
   end
 
 end

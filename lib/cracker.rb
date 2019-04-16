@@ -1,4 +1,6 @@
+require "./lib/enigma_setup"
 class Cracker
+  include EnigmaSetup
 
   def self.crack(message, date = Enigma.fetch_date)
     message_attack = Enigma.get_message_array(message)
