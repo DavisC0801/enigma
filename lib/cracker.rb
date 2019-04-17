@@ -17,10 +17,10 @@ class Cracker
         temp = (base[char] - \
         keys[(message.length - message_array.length + index) % keys.length])
         encode += base.key(temp % base.count)
-        if index == 3 && encode == " end"
-          cracked = true
-          return Decryption.decode(message, key.to_s.rjust(5, "0"), date)
-        end
+      end
+      if encode == " end"
+        cracked = true
+        return Decryption.decode(message, key.to_s.rjust(5, "0"), date)
       end
     end
   end

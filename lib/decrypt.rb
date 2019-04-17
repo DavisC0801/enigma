@@ -12,10 +12,9 @@ class Decrypt
   end
 
   output = {}
-  enigma = Enigma.new
   File.open(inputs[1], "w+") do |file|
     File.readlines(inputs.first).each do |line|
-      output = enigma.decrypt(line.chomp, inputs[2], inputs[3])
+      output = Decryption.decode(line.chomp, inputs[2], inputs[3])
       file.puts(output[:decryption])
     end
   end
