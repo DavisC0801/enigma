@@ -44,7 +44,7 @@ module EnigmaSetup
 
   def self.setup(key, date)
     keys = create_keys(key)
-    base = generate_characters()
+    base = generate_characters
     date_key = generate_date_key(date)
     keys = add_offsets(keys, date_key)
     return {
