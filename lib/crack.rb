@@ -14,8 +14,9 @@ class Crack
   output[:date] = inputs[2] if inputs.length == 3
 
   File.open(inputs[1], "w+") do |file|
+    output = Cracker.crack(File.readlines(inputs.first).last.chomp, output[:date])
     File.readlines(inputs.first).each do |line|
-      output = Cracker.crack(line.chomp, output[:date])
+      output = Decryption.decode(line.chomp, output[:key], output[:date])
       file.puts(output[:decryption])
     end
   end
